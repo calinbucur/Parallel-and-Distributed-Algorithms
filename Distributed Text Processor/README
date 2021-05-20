@@ -1,0 +1,30 @@
+Tema 3 APD
+Bucur Calin-Andrei
+332CB
+
+In main determin numarul maxim de threaduri P si fisierul de intrare.
+Initializez tot ce imi trebuie pt MPI.
+
+In procesul Master (rank 0):
+Pornesc 4 threaduri care citesc inputul si il trimit workerilor
+Dupa ce threadurile isi termina treaba determin numele fisierului de output (din numele fisierului de input).
+Astept sa primesc fiecare paragraf in ordine.
+Fac asta asteptand mesaje cu un tag anume reprezentand numarul paragrafului.
+Primesc nr de linii al paragrafului si in functie de sursa printez genul.
+Apoi primesc si printez paragraful linie cu linie.
+
+Threadurile de citire decid ce gen trateaza in functie de id.
+Threadurile deschid fisierul de input si citesc.
+Daca intalnesc titlul unui alt paragraf cresc numarul de paragrafe.
+Daca intalnesc titlul unui paragraf din genul corespunzator threadului
+citesc linie cu linie si salvez intr-un array pana dau de o linie goala.
+Trimit la nodul worker corespunzator mai intai nr de linii al paragrafului si apoi paragraful linie cu linie cu tagul corespunzator numarului paragrafului.
+Cand termina de citit trimit -1 la worker pt a il opri.
+
+Nodurile worker doar pornesc cate un thread de tip reader.
+Threadurile reader primesc nr de linii pt paragraf iar apoi paragraful linie cu linie.
+Calculeaza nr de threaduri necesare.
+Pornesc threadurile de procesare de tipul corespunzator genului.
+Threadurile de procesare parcurg fiecare linie caracter cu caracter si fac modificarile necesare apoi trimit rezultatul catre nodul master cu tagul corespunzator ordinii.
+
+That's pretty much it.
